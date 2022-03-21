@@ -52,14 +52,13 @@
             <label for="amount">Valor <br />
               <small>(negativo - despesas, positivo - receitas)</small>
             </label>
-            <input type="number" step="any" name="amount" placeholder="Valor da transação" />
+            <input type="text" name="amount"autocomplete="off" placeholder="0,00" onkeyup="aplicarMascaraMoeda(this)"/>
           </div>
           
           <button class="btn add-transaction">Adicionar</button>
         </form>
       </div>
     </div>
-
     <script src="app.js"></script>
   </body>
 </html>
