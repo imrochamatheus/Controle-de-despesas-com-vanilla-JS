@@ -111,7 +111,7 @@ input[type='number'] {
   list-style-type: none;
   padding: 0;
   margin-bottom: 40px;
-  max-height: 100px;
+  height: 100px;
   overflow-y: scroll;
 }
 
@@ -199,6 +199,54 @@ input[type='number'] {
   right: 10px;
   border-radius: 3px;
   transition: opacity 0.3s ease;
+}
+
+.transaction-type {
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.label {
+  display : block;
+  width: 100%;
+  max-width: 350px;
+  cursor: pointer;
+  
+}
+
+.label:first-child {
+  color: #2ecc71;
+}
+
+.label:last-child {
+  color: #c0392b;
+}
+
+.label input {
+  visibility: hidden; /*Makes input not-clickable*/
+  position: absolute; /* Remove input from document flow */
+
+}
+
+.label div {
+  padding: 20px;
+  margin: 0 0 5px 0;
+  text-align: center;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.label > input:checked + div{ 
+  box-shadow: var(--box-shadow)
+}
+
+.label > input:checked + div > h4{ 
+  transform: scale(1.15);
+  transition: .8s;
+}
+
+.type-transaction-container {
+  display: flex;
 }
 
 .d-none {

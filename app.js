@@ -14,7 +14,7 @@ const aplicarMascaraMoeda = input => {
   result = result.replace(/([\d]{2})$/, ".$1")
 
   if (result.length > 6) {
-    result = result.replace(/\B(?=(\d{3})+[^\d])/g, "," )
+    result = result.replace(/\B(?=(\d{3})+(?!\d))/g, "," )
   }
 
   input.value = result
@@ -63,6 +63,8 @@ const calcularDespesas = arrayTransacoes => {
   const { receitas, despesas } = totalTransacoes
   const saldoAtual = receitas - despesas
 
+  balancoContainer.style.color = saldoAtual >= 0 ? '#2ecc71' : '#c0392b'
+  
   balancoContainer.innerText = converterMoedaParaBRL(saldoAtual)
   receitasContainer.innerText = `+ ${converterMoedaParaBRL(receitas)}`
   despesasContainer.innerText = `- ${converterMoedaParaBRL(despesas)}`
@@ -103,9 +105,10 @@ const gerarId = () => Date.now() + Math.floor(Math.random() * 1000)
 
 const adicionarTransacao = event => {
   event.preventDefault()
-  
+
   const transacoes = buscarDadosLocalStorage()
   const form = event.target
+  const type = form.tipo.value
   const nome = form.text.value.trim()
   const valor = form.amount.value.trim().replaceAll(',', '')
 
@@ -117,14 +120,13 @@ const adicionarTransacao = event => {
   const despesa = {
     id: gerarId(),
     nome,
-    valor
+    valor: type === 'receita' ? valor : valor * -1
   }
   
   transacoes.push(despesa)
   atualizarInformacoes(transacoes)
+  form.reset()
 
-  form.text.value = ''
-  form.amount.value = ''
 }
 
 const abrirPopup = () => {
@@ -139,9 +141,11 @@ const fecharPopup = e => {
   
   const elementoClicadoPossuiClasse = [...elementoClicado.classList]
     .some(classe => classesParaFechar.includes(classe))
+    
+    if(elementoClicadoPossuiClasse) {
+      const input =  document.getElementById('inputValue')
 
-  if(elementoClicadoPossuiClasse) {
-    popupContainer.classList.toggle('d-none')
+      popupContainer.classList.toggle('d-none')
   }
 }
 
