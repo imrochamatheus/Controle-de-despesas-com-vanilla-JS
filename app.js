@@ -125,7 +125,9 @@ const adicionarTransacao = event => {
   
   transacoes.push(despesa)
   atualizarInformacoes(transacoes)
+
   form.reset()
+  popupContainer.classList.toggle('d-none')
 
 }
 
@@ -137,7 +139,7 @@ const abrirPopup = () => {
 
 const fecharPopup = e => {
   const elementoClicado = e.target
-  const classesParaFechar = ['popup-wrapper', 'popup-close', 'add-transaction']
+  const classesParaFechar = ['popup-wrapper', 'popup-close']
   
   const elementoClicadoPossuiClasse = [...elementoClicado.classList]
     .some(classe => classesParaFechar.includes(classe))

@@ -44,7 +44,11 @@
         <form id="form">
           <div class="form-control">
             <label for="text">Nome</label>
-            <input autofocus type="text" name="text" placeholder="Nome da transação" autocomplete="off" />
+            <input autofocus type="text" name="text" placeholder="Nome da transação" autocomplete="off" required/>
+          </div>
+          <div class="form-control">
+            <label for="date">Data</label>
+            <input type="date" name="date" required>
           </div>
           <label for="#" class="transaction-type">Tipo de transação</label>
           <div class="form-control type-transaction-container">
@@ -63,7 +67,7 @@
           </div>
           <div class="form-control">
             <label for="amount">Valor</label>
-            <input type="text" id="inputValue" name="amount" autocomplete="off" placeholder="0.00" onkeyup="aplicarMascaraMoeda(this)"/>
+            <input type="text" id="inputValue" name="amount" autocomplete="off" placeholder="0.00" required/>
           </div>
           <button class="btn add-transaction">Adicionar</button>
         </form>

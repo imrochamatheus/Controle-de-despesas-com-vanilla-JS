@@ -80,13 +80,30 @@ label {
 }
 
 input[type='text'],
-input[type='number'] {
+input[type='number']{
   border: 1px solid #dedede;
   border-radius: 2px;
   display: block;
   font-size: 16px;
   padding: 10px;
   width: 100%;
+  outline: none;
+}
+
+input[type='date'] {
+  background-color: #9c88ff;
+  padding: 10px;
+  outline: none;
+  display: block;
+  border: none;
+  font-family: 'Lato', sans-serif;
+  border-radius: 2px;
+  color: #ffffff;
+}
+
+::-webkit-calendar-picker-indicator {
+  background-color: #ffffff;
+  border-radius: 3px;
 }
 
 .btn {
