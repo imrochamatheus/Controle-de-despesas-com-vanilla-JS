@@ -12,7 +12,6 @@ const converterDataParaBr = data => {
   return data.toLocaleString('pt-BR', options)
 }
 
-
 const aplicarMascaraMoeda = input => {
   const inputValue = input.value.trim()
 
@@ -37,7 +36,6 @@ const persistirTransacoesLocalStorage = transacoes => {
 }
 
 const exibirTransacao = ({ id, nome, valor, date }) => {
-  const operador = valor < 0 ? '-' : ''
   const classeASerAplicada = valor < 0 ? 'minus' : 'plus'
   const li = document.createElement('li')
 
@@ -85,9 +83,62 @@ const atualizarInformacoes = transacoes => {
     ulTransacoes.innerHTML = ''
   
     persistirTransacoesLocalStorage(transacoes)
-  
     transacoes.forEach(exibirTransacao)
   }
+}
+
+const editarTransacao = event => {
+  event.preventDefault()
+
+  const {text: nome, date, tipo, amount: valor, id} = Object
+    .fromEntries(new FormData(event.target).entries())
+  
+  const transacoes = buscarDadosLocalStorage()
+  const indexTransacao = transacoes
+        .findIndex(({ id: idAtual }) => idAtual === id)
+  
+  transacoes.splice(indexTransacao, 1,
+    { nome,
+      date,
+      tipo,
+      valor: tipo === 'receita' ? valor : valor * -1,
+      id
+    })
+  
+  atualizarInformacoes(transacoes)
+  event.target.closest('.popup-wrapper').classList.toggle('d-none')
+}
+
+const abrirEdicaoDeTransacao = idTransacao => {
+
+  const transacoes = buscarDadosLocalStorage()
+  const transacaoASerEditada = transacoes.find(({id}) => id === idTransacao)
+
+  const popup = document.querySelector('.popup-wrapper')
+      const popupEditar = popup.cloneNode(true)
+
+      popupEditar.querySelector('h3').innerText = 'Editar transação'
+      popupEditar.querySelector('.btn').innerText = 'Editar'
+
+      const idInput = document.createElement('input')
+      idInput.name = 'id'
+      idInput.value = transacaoASerEditada.id
+      idInput.hidden = true
+      
+      const formEditar = popupEditar.querySelector('form')
+      formEditar.appendChild(idInput)
+
+      formEditar.text.value = transacaoASerEditada.nome
+      formEditar.date.value = transacaoASerEditada.date
+      formEditar.amount.value = Math.abs(transacaoASerEditada.valor)
+      Array.from(formEditar.tipo)
+        .find(input => input.value === transacaoASerEditada.tipo).checked = true
+
+      popupEditar.classList.toggle('d-none')
+      document.body.append(popupEditar)
+
+      popupEditar.addEventListener('click', fecharPopup)
+      popupEditar.addEventListener('submit', editarTransacao)
 }
 
 const excluirTransacao = event => {
@@ -108,11 +159,12 @@ const excluirTransacao = event => {
       atualizarInformacoes(transacoes)
       persistirTransacoesLocalStorage(transacoes)
 
-      if (transacoes.length === 0) {
-        //Mensagem
-      }
+      return 
     }
 
+    if (elementoClicado.dataset.edit) {
+      abrirEdicaoDeTransacao(elementoClicado.dataset.edit)
+    }
   }
 }
 
@@ -123,8 +175,8 @@ const adicionarTransacao = event => {
 
   const transacoes = buscarDadosLocalStorage()
   const form = event.target
-  const type = form.tipo.value
   const date = form.date.value
+  const tipo = form.tipo.value
   const nome = form.text.value.trim()
   const valor = form.amount.value.trim().replaceAll(',', '')
 
@@ -137,7 +189,8 @@ const adicionarTransacao = event => {
     id: gerarId(),
     nome,
     date,
-    valor: type === 'receita' ? valor : valor * -1
+    tipo,
+    valor: tipo === 'receita' ? valor : valor * -1
   }
   
   transacoes.push(despesa)
@@ -145,16 +198,14 @@ const adicionarTransacao = event => {
 
   form.reset()
   popupContainer.classList.toggle('d-none')
-
 }
 
 const abrirPopup = () => {
   const popup = document.querySelector('.popup-wrapper')
-  
   popup.classList.toggle('d-none')
 }
 
-const fecharPopup = e => {
+function fecharPopup (e) {
   const elementoClicado = e.target
   const classesParaFechar = ['popup-wrapper', 'popup-close']
   
@@ -162,9 +213,8 @@ const fecharPopup = e => {
     .some(classe => classesParaFechar.includes(classe))
     
     if(elementoClicadoPossuiClasse) {
-      const input =  document.getElementById('inputValue')
-
-      popupContainer.classList.toggle('d-none')
+      // const input =  document.getElementById('inputValue')
+      this.classList.toggle('d-none')
   }
 }
 
