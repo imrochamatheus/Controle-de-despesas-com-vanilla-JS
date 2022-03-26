@@ -136,12 +136,40 @@ input[type='date'] {
   background-color: #fff;
   box-shadow: var(--box-shadow);
   color: #333;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 10px;
+  padding: 2px 10px;
   margin: 10px 0;
   transition: .8s;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.transactions li .date {
+ font-size: 12px;
+ text-align: end;
+ padding: 5px 0;
+ grid-column-start: 2;
+}
+
+.transactions li .title {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.transactions li .preco {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  text-align: end;
+ }
+
+.transactions li .infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .transactions li:hover {
@@ -163,25 +191,67 @@ input[type='date'] {
   color: #fff;
   font-size: 20px;
   line-height: 20px;
-  padding: 2px 5px;
+  padding-top: 2px;
+  padding-left: 30px;
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: -100px;
   transform: translate(-100%, -50%);
   opacity: 0;
   transition: all .5s ease;
+  border-radius: 0 3px 3px 0;
+  box-shadow: var(--box-shadow);
 }
 
 .delete-btn::after {
-    font-family: "Font Awesome 5 Free"; 
-    font-weight: 900;
-    content: "\f55a";
-    font-size: 15px;
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900;
+  content: "\f55a";
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-btn {
+  cursor: pointer;
+  background-color: #e74c3c;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+  line-height: 20px;
+  padding-top: 2px;
+  padding-left: 30px;
+  position: absolute;
+  top: 20%;
+  left: -100px;
+  transform: translate(-100%, -50%);
+  opacity: 0;
+  transition: all .5s ease;
+  border-radius: 0 3px 3px 0;
+  background: #9997a3;
+  box-shadow: var(--box-shadow);
+  
+}
+
+.edit-btn::after {
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900;
+  content: "\f044";
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .transactions li:hover .delete-btn {
   opacity: 1;
-  left: 25px;
+  left: 23px;
+}
+
+.transactions li:hover .edit-btn {
+  opacity: 1;
+  left: 23px;
 }
 
 .popup-wrapper {

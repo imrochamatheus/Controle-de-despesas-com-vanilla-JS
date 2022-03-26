@@ -7,6 +7,12 @@ const converterMoedaParaBRL = valor =>
     currency: 'BRL'
   })
 
+const converterDataParaBr = data => {
+  var options = { year: 'numeric', month: 'long', day: 'numeric' }; 
+  return data.toLocaleString('pt-BR', options)
+}
+
+
 const aplicarMascaraMoeda = input => {
   const inputValue = input.value.trim()
 
@@ -30,7 +36,7 @@ const persistirTransacoesLocalStorage = transacoes => {
   localStorage.setItem('transacoes', JSON.stringify(transacoes))
 }
 
-const exibirTransacao = ({ id, nome, valor }) => {
+const exibirTransacao = ({ id, nome, valor, date }) => {
   const operador = valor < 0 ? '-' : ''
   const classeASerAplicada = valor < 0 ? 'minus' : 'plus'
   const li = document.createElement('li')
@@ -39,10 +45,12 @@ const exibirTransacao = ({ id, nome, valor }) => {
   li.classList.add(classeASerAplicada)
 
   const conteudoLi = `
-    ${nome} <span>${operador} ${converterMoedaParaBRL(Math.abs(valor))}</span>
-    <button class="delete-btn"></button>
+    <div class="date">${converterDataParaBr(new Date(date))}</div> 
+    <span class="title">${nome}</span> 
+    <span class="preco">${converterMoedaParaBRL(Math.abs(valor))}</span>
+    <button class="edit-btn" data-edit="${id}"></button>
+    <button class="delete-btn" data-delete="${id}"></button>
   `
-
   li.innerHTML = conteudoLi
   ulTransacoes.prepend(li)
 }
@@ -90,14 +98,21 @@ const excluirTransacao = event => {
     const idTransacaoASerExcluida = liTransacao.dataset.id
     const transacoes = buscarDadosLocalStorage()
 
-    const indexTransacao = transacoes
-      .findIndex(({ id }) => id === idTransacaoASerExcluida)
+    if (elementoClicado.dataset.delete) {
+      const indexTransacao = transacoes
+        .findIndex(({ id }) => id === idTransacaoASerExcluida)
+  
+      transacoes.splice(indexTransacao, 1)
+      liTransacao.remove()
+  
+      atualizarInformacoes(transacoes)
+      persistirTransacoesLocalStorage(transacoes)
 
-    transacoes.splice(indexTransacao, 1)
-    liTransacao.remove()
+      if (transacoes.length === 0) {
+        //Mensagem
+      }
+    }
 
-    atualizarInformacoes(transacoes)
-    persistirTransacoesLocalStorage(transacoes)
   }
 }
 
@@ -109,6 +124,7 @@ const adicionarTransacao = event => {
   const transacoes = buscarDadosLocalStorage()
   const form = event.target
   const type = form.tipo.value
+  const date = form.date.value
   const nome = form.text.value.trim()
   const valor = form.amount.value.trim().replaceAll(',', '')
 
@@ -120,6 +136,7 @@ const adicionarTransacao = event => {
   const despesa = {
     id: gerarId(),
     nome,
+    date,
     valor: type === 'receita' ? valor : valor * -1
   }
   
