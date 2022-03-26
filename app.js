@@ -40,7 +40,7 @@ const exibirTransacao = ({ id, nome, valor }) => {
 
   const conteudoLi = `
     ${nome} <span>${operador} ${converterMoedaParaBRL(Math.abs(valor))}</span>
-    <button class="delete-btn">x</button>
+    <button class="delete-btn"></button>
   `
 
   li.innerHTML = conteudoLi
@@ -64,7 +64,7 @@ const calcularDespesas = arrayTransacoes => {
   const saldoAtual = receitas - despesas
 
   balancoContainer.style.color = saldoAtual >= 0 ? '#2ecc71' : '#c0392b'
-  
+
   balancoContainer.innerText = converterMoedaParaBRL(saldoAtual)
   receitasContainer.innerText = `+ ${converterMoedaParaBRL(receitas)}`
   despesasContainer.innerText = `- ${converterMoedaParaBRL(despesas)}`

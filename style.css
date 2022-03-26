@@ -128,7 +128,7 @@ input[type='number'] {
 }
 
 .transactions li:hover {
-  padding-left: 25px;
+  padding-left: 30px;
 }
 
 .transactions li.plus {
@@ -155,9 +155,16 @@ input[type='number'] {
   transition: all .5s ease;
 }
 
+.delete-btn::after {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+    content: "\f55a";
+    font-size: 15px;
+}
+
 .transactions li:hover .delete-btn {
   opacity: 1;
-  left: 20px;
+  left: 25px;
 }
 
 .popup-wrapper {
