@@ -111,7 +111,7 @@ const editarTransacao = event => {
 
 const abrirEdicaoDeTransacao = idTransacao => {
   const transacoes = buscarDadosLocalStorage()
-  const transacaoASerEditada = transacoes.find(({ id }) => id === +idTransacao )
+  const transacaoASerEditada = transacoes.find(({ id }) => id === idTransacao )
 
   const popup = document.querySelector('.popup-wrapper')
       const popupEditar = popup.cloneNode(true)
@@ -145,12 +145,12 @@ const excluirTransacao = event => {
 
   if (elementoClicado.tagName === 'BUTTON') {
     const liTransacao = elementoClicado.closest('li')
-    const idTransacaoASerExcluida = liTransacao.dataset.id
+    const idTransacao = liTransacao.dataset.id
     const transacoes = buscarDadosLocalStorage()
 
     if (elementoClicado.dataset.delete) {
       const indexTransacao = transacoes
-        .findIndex(({ id }) => id === idTransacaoASerExcluida)
+        .findIndex(({ id }) => id === idTransacao)
   
       transacoes.splice(indexTransacao, 1)
       liTransacao.remove()
@@ -162,8 +162,7 @@ const excluirTransacao = event => {
     }
 
     if (elementoClicado.dataset.edit) {
-      const id = elementoClicado.dataset.edit
-      abrirEdicaoDeTransacao(id)
+      abrirEdicaoDeTransacao(idTransacao)
     }
   }
 }
@@ -207,7 +206,7 @@ const abrirPopup = () => {
 
 function fecharPopup (e) {
   const elementoClicado = e.target
-  const classesParaFechar = ['popup-wrapper', 'popup-close']
+  const classesParaFechar = ['popup-close']
   
   const elementoClicadoPossuiClasse = [...elementoClicado.classList]
     .some(classe => classesParaFechar.includes(classe))
