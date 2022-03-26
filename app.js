@@ -111,7 +111,7 @@ const editarTransacao = event => {
 
 const abrirEdicaoDeTransacao = idTransacao => {
   const transacoes = buscarDadosLocalStorage()
-  const transacaoASerEditada = transacoes.find(({ id }) => id === idTransacao )
+  const transacaoASerEditada = transacoes.find(({ id }) => +id === +idTransacao )
 
   const popup = document.querySelector('.popup-wrapper')
       const popupEditar = popup.cloneNode(true)
