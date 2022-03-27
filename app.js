@@ -100,6 +100,7 @@ const abrirEdicaoDeTransacao = idTransacao => {
       const formEditar = popupEditar.querySelector('form')
       formEditar.appendChild(idInput)
 
+      formEditar.amount.addEventListener('keyup', aplicarMascaraMoeda)
       formEditar.text.value = transacaoASerEditada.nome
       formEditar.date.value = transacaoASerEditada.date
       formEditar.amount.value = Math.abs(transacaoASerEditada.valor)
