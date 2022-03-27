@@ -150,7 +150,7 @@ const adicionarTransacao = event => {
 
   const transacoes = buscarDadosLocalStorage()
   const form = event.target
-  const date = form.date.value
+  const date = new Date(form.date.value)
   const tipo = form.tipo.value
   const nome = form.text.value.trim()
   const valor = form.amount.value.trim().replaceAll(',', '')
