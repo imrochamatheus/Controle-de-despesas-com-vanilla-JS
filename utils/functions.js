@@ -18,13 +18,17 @@ const converterMoedaParaBRL = valor =>
     currency: 'BRL'
   })
 
-const converterDataParaBr = data => 
-  data.toLocaleString('pt-BR',
+const converterDataParaBr = data => {
+  data.setDate(data.getDate() + 1)
+
+  return data.toLocaleString('pt-BR',
     { 
       year: 'numeric',
       month: 'long',
       day: 'numeric'
    })
+
+}
 
 
 export { converterMoedaParaBRL, aplicarMascaraMoeda, converterDataParaBr }
