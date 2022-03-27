@@ -1,5 +1,4 @@
 import { converterDataParaBr, converterMoedaParaBRL } from "./utils/functions.js";
-const ulTransacoes = document.getElementById('transactions')
 
 const buscarDadosLocalStorage = () =>
  JSON.parse(localStorage.getItem('transacoes'))
@@ -67,7 +66,7 @@ const editarTransacao = event => {
     .fromEntries(new FormData(event.target).entries())
   
   const transacoes = buscarDadosLocalStorage()
-  
+
   const indexTransacao = transacoes
         .findIndex(({ id: idAtual }) => idAtual === id)
   
@@ -153,10 +152,7 @@ const adicionarTransacao = event => {
   const nome = form.text.value.trim()
   const valor = form.amount.value.trim().replaceAll(',', '')
 
-  if (!nome || !valor) {
-    console.log(`Preencha corretamente`)
-    return
-  }
+  if (!nome || !valor) return
 
   const despesa = {
     id: gerarId(),
@@ -178,17 +174,11 @@ const abrirPopup = () => {
   popup.classList.toggle('d-none')
 }
 
-function fecharPopup (e) {
-  const elementoClicado = e.target
-  const classesParaFechar = ['popup-close']
-  
-  const elementoClicadoPossuiClasse = [...elementoClicado.classList]
-    .some(classe => classesParaFechar.includes(classe))
-    
-    if(elementoClicadoPossuiClasse) {
-      // const input =  document.getElementById('inputValue')
-      this.classList.toggle('d-none')
-  }
+function fecharPopup (event) {
+  const elementoClicado = event.target
+
+  if(elementoClicado.classList.contains('popup-close')) 
+    this.classList.toggle('d-none')
 }
 
 const btnAdicionarTransacao = document.getElementById('btn-add-transaction')
@@ -199,6 +189,8 @@ popupContainer.addEventListener('click', fecharPopup)
 
 const form = document.getElementById('form')
 form.addEventListener('submit', adicionarTransacao);
+
+const ulTransacoes = document.getElementById('transactions')
 ulTransacoes.addEventListener('click', excluirTransacao)
 
 window.onload = () => {
