@@ -1,4 +1,4 @@
-import { converterDataParaBr, converterMoedaParaBRL } from "./utils/functions.js";
+import { converterDataParaBr, converterMoedaParaBRL, aplicarMascaraMoeda } from "./utils/functions.js";
 
 const buscarDadosLocalStorage = () =>
  JSON.parse(localStorage.getItem('transacoes'))
@@ -193,6 +193,12 @@ form.addEventListener('submit', adicionarTransacao);
 const ulTransacoes = document.getElementById('transactions')
 ulTransacoes.addEventListener('click', excluirTransacao)
 
+document.addEventListener('keyup', e => {
+  if (e.target === inputValue) {
+    aplicarMascaraMoeda(e.target)
+  }
+})
+
 window.onload = () => {
   const transacoes = localStorage.getItem('transacoes')
   
@@ -202,3 +208,4 @@ window.onload = () => {
   }
   atualizarInformacoes(JSON.parse(transacoes))
 }
+
