@@ -31,6 +31,13 @@ h1 {
   color: #2e75cc;
 }
 
+h2 {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid #bbb;
+}
+
 h3 {
   border-bottom: 1px solid #bbb;
   padding-bottom: 10px;
@@ -128,7 +135,7 @@ input[type='date'] {
   list-style-type: none;
   padding: 0;
   margin-bottom: 40px;
-  height: 100px;
+  height: 130px;
   overflow-y: scroll;
   position: relative;
 }
