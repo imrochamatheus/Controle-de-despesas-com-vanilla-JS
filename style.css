@@ -130,6 +130,21 @@ input[type='date'] {
   margin-bottom: 40px;
   height: 100px;
   overflow-y: scroll;
+  position: relative;
+}
+
+.transactions::after {
+  content: "\f571";
+  font-family: "Font Awesome 5 Free"; 
+  position: fixed;
+  font-weight: 600;
+  font-size: 80px;
+  opacity: .1;
+  display: flex;
+  top: 65%;
+  left: 50%;
+  color: rgba(128, 128, 128, .5);
+  transform: translate(-50%, -50%);
 }
 
 .transactions li {
@@ -253,14 +268,21 @@ input[type='date'] {
   left: 23px;
 }
 
-#btn-add-transaction::after {
+#btn-add-transaction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+
+#btn-add-transaction::before {
   font-family: "Font Awesome 5 Free"; 
   font-weight: 900;
-  content: "\e529";
+  content: "\f51e";
   font-size: 20px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-right: 15px;
 }
 
 .popup-wrapper {
