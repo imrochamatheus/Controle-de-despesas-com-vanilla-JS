@@ -87,31 +87,33 @@ const abrirEdicaoDeTransacao = idTransacao => {
   const transacaoASerEditada = transacoes.find(({ id }) => +id === +idTransacao )
 
   const popup = document.querySelector('.popup-wrapper')
-      const popupEditar = popup.cloneNode(true)
+  const popupEditar = popup.cloneNode(true)
 
-      popupEditar.querySelector('h3').innerText = 'Editar transação'
-      popupEditar.querySelector('.btn').innerText = 'Editar'
+  popupEditar.querySelector('h3').innerText = 'Editar transação'
+  popupEditar.querySelector('.btn').innerText = 'Editar'
 
-      const idInput = document.createElement('input')
-      idInput.name = 'id'
-      idInput.value = transacaoASerEditada.id
-      idInput.hidden = true
-      
-      const formEditar = popupEditar.querySelector('form')
-      formEditar.appendChild(idInput)
+  const idInput = document.createElement('input')
+  idInput.name = 'id'
+  idInput.value = transacaoASerEditada.id
+  idInput.hidden = true
+  
+  const formEditar = popupEditar.querySelector('form')
+  formEditar.appendChild(idInput)
 
-      formEditar.amount.addEventListener('keyup', aplicarMascaraMoeda)
-      formEditar.text.value = transacaoASerEditada.nome
-      formEditar.date.value = transacaoASerEditada.date
-      formEditar.amount.value = Math.abs(transacaoASerEditada.valor)
-      Array.from(formEditar.tipo)
-        .find(input => input.value === transacaoASerEditada.tipo).checked = true
+  // console.log(formEditar.amount)
+  formEditar.text.value = transacaoASerEditada.nome
+  formEditar.date.value = transacaoASerEditada.date
+  formEditar.amount.value = Math.abs(transacaoASerEditada.valor)
+  Array.from(formEditar.tipo)
+    .find(input => input.value === transacaoASerEditada.tipo).checked = true
 
-      popupEditar.classList.toggle('d-none')
-      document.body.append(popupEditar)
-
-      popupEditar.addEventListener('click', fecharPopup)
-      popupEditar.addEventListener('submit', editarTransacao)
+  document.body.append(popupEditar)
+    
+  popupEditar.classList.toggle('d-none')
+  popupEditar.querySelector('#inputValue')
+    .addEventListener('keyup', event => aplicarMascaraMoeda(event.target))
+  popupEditar.addEventListener('click', fecharPopup)
+  popupEditar.addEventListener('submit', editarTransacao)
 }
 
 const excluirTransacao = event => {
