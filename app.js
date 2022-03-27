@@ -1,35 +1,8 @@
+import { converterDataParaBr, converterMoedaParaBRL } from "./utils/functions.js";
 const ulTransacoes = document.getElementById('transactions')
 
-const converterMoedaParaBRL = valor =>
-  valor.toLocaleString('pt-BR',
-  { 
-    style: 'currency',
-    currency: 'BRL'
-  })
-
-const converterDataParaBr = data => {
-  var options = { year: 'numeric', month: 'long', day: 'numeric' }; 
-  return data.toLocaleString('pt-BR', options)
-}
-
-const aplicarMascaraMoeda = input => {
-  const inputValue = input.value.trim()
-
-  let result = inputValue.toString().replace(/[^\d]+/g, '')
-  result = result.replace(/([\d]{2})$/, ".$1")
-
-  if (result.length > 6) {
-    result = result.replace(/\B(?=(\d{3})+(?!\d))/g, "," )
-  }
-
-  input.value = result
-}
-
-const buscarDadosLocalStorage = () => {
-  const dadosTransacoes = localStorage.getItem('transacoes')
-
-  return JSON.parse(dadosTransacoes)
-}
+const buscarDadosLocalStorage = () =>
+ JSON.parse(localStorage.getItem('transacoes'))
 
 const persistirTransacoesLocalStorage = transacoes => {
   localStorage.setItem('transacoes', JSON.stringify(transacoes))
@@ -94,6 +67,7 @@ const editarTransacao = event => {
     .fromEntries(new FormData(event.target).entries())
   
   const transacoes = buscarDadosLocalStorage()
+  
   const indexTransacao = transacoes
         .findIndex(({ id: idAtual }) => idAtual === id)
   
