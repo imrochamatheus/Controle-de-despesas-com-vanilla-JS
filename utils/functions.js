@@ -1,5 +1,4 @@
 const aplicarMascaraMoeda = input => {
-  console.log(input)
   const inputValue = input.value.trim()
 
   let result = inputValue.toString().replace(/[^\d]+/g, '')
