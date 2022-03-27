@@ -140,20 +140,6 @@ input[type='date'] {
   position: relative;
 }
 
-.transactions::after {
-  content: "\f571";
-  font-family: "Font Awesome 5 Free"; 
-  position: fixed;
-  font-weight: 600;
-  font-size: 80px;
-  opacity: .1;
-  display: flex;
-  top: 65%;
-  left: 50%;
-  color: rgba(128, 128, 128, .5);
-  transform: translate(-50%, -50%);
-}
-
 .transactions li {
   background-color: #fff;
   box-shadow: var(--box-shadow);
