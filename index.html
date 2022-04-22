@@ -10,7 +10,7 @@
     <h2>Controle de despesas</h2>
     <div class="container">
       <h4>Saldo atual</h4>
-      
+
       <h1 id="balance" class="balance">R$ 0.00</h1>
 
       <div class="inc-exp-container">
@@ -26,19 +26,10 @@
       </div>
 
       <h3>Transações</h3>
-      
-      <ul id="transactions" class="transactions">
-        <!-- <li class="minus">
-            <div class="date">data</div> 
-            <span class="title">Salário</span> 
-            <span class="preco">-$400</span>
-            <button class="edit-btn"></button>
-            <button class="delete-btn"></button>
-        </li> -->
-      </ul>
+
+      <ul id="transactions" class="transactions"></ul>
       <h2></h2>
       <button class="btn" id="btn-add-transaction">Nova transação</button>
-      
     </div>
     <div class="popup-wrapper d-none">
       <div class="popup">
@@ -47,22 +38,33 @@
         <form id="form">
           <div class="form-control">
             <label for="text">Nome</label>
-            <input type="text" name="text" placeholder="Nome da transação" autocomplete="off" required/>
+            <input
+              type="text"
+              name="text"
+              placeholder="Nome da transação"
+              autocomplete="off"
+              required
+            />
           </div>
           <div class="form-control">
             <label for="date">Data</label>
-            <input type="date" name="date" required>
+            <input type="date" name="date" required />
           </div>
           <label for="#" class="transaction-type">Tipo de transação</label>
           <div class="form-control type-transaction-container">
             <label class="label">
-              <input type="radio" name="tipo" value="receita" checked="checked"/> 
+              <input
+                type="radio"
+                name="tipo"
+                value="receita"
+                checked="checked"
+              />
               <div class="recipe-div">
                 <h4>+ Receita</h4>
               </div>
-            </label>    
+            </label>
             <label class="label">
-              <input type="radio" name="tipo" value="despesa"/> 
+              <input type="radio" name="tipo" value="despesa" />
               <div class="expense-div">
                 <h4>- Despesa</h4>
               </div>
@@ -70,14 +72,24 @@
           </div>
           <div class="form-control">
             <label for="amount">Valor</label>
-            <input type="text" id="inputValue" name="amount" autocomplete="off" placeholder="0.00" required/>
+            <input
+              type="text"
+              id="inputValue"
+              name="amount"
+              autocomplete="off"
+              placeholder="0.00"
+              required
+            />
           </div>
           <button class="btn add-transaction">Adicionar</button>
         </form>
       </div>
     </div>
-    
-    <script src="https://kit.fontawesome.com/6e9eea67d0.js" crossorigin="anonymous"></script>
+
+    <script
+      src="https://kit.fontawesome.com/6e9eea67d0.js"
+      crossorigin="anonymous"
+    ></script>
     <script type="module" src="app.js"></script>
   </body>
 </html>

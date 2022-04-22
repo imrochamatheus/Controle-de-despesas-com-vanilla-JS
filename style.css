@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 :root {
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -16,7 +16,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .container {
@@ -86,8 +86,8 @@ label {
   margin: 10px 0;
 }
 
-input[type='text'],
-input[type='number']{
+input[type="text"],
+input[type="number"] {
   border: 1px solid #dedede;
   border-radius: 2px;
   display: block;
@@ -97,13 +97,13 @@ input[type='number']{
   outline: none;
 }
 
-input[type='date'] {
+input[type="date"] {
   background-color: #9c88ff;
   padding: 10px;
   outline: none;
   display: block;
   border: none;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   border-radius: 2px;
   color: #ffffff;
 }
@@ -135,9 +135,23 @@ input[type='date'] {
   list-style-type: none;
   padding: 0;
   margin-bottom: 40px;
-  height: 130px;
+  height: 150px;
   overflow-y: scroll;
-  position: relative;
+}
+
+.transactions::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\e529";
+  position: fixed;
+  transform: translate(50%);
+  z-index: -1;
+  font-size: 150px;
+  height: 150px;
+  color: rgba(128, 128, 128, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .transactions li {
@@ -146,7 +160,7 @@ input[type='date'] {
   color: #333;
   padding: 2px 10px;
   margin: 10px 0;
-  transition: .8s;
+  transition: 0.8s;
   display: grid;
   position: relative;
   grid-template-columns: 1fr 1fr;
@@ -154,10 +168,10 @@ input[type='date'] {
 }
 
 .transactions li .date {
- font-size: 12px;
- text-align: end;
- padding: 5px 0;
- grid-column-start: 2;
+  font-size: 12px;
+  text-align: end;
+  padding: 5px 0;
+  grid-column-start: 2;
 }
 
 .transactions li .title {
@@ -172,7 +186,7 @@ input[type='date'] {
   grid-column-start: 2;
   grid-row-start: 2;
   text-align: end;
- }
+}
 
 .transactions li .infos {
   display: flex;
@@ -206,13 +220,13 @@ input[type='date'] {
   left: -100px;
   transform: translate(-100%, -50%);
   opacity: 0;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
   border-radius: 0 3px 3px 0;
   box-shadow: var(--box-shadow);
 }
 
 .delete-btn::after {
-  font-family: "Font Awesome 5 Free"; 
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f55a";
   font-size: 12px;
@@ -235,14 +249,14 @@ input[type='date'] {
   left: -100px;
   transform: translate(-100%, -50%);
   opacity: 0;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
   border-radius: 0 3px 3px 0;
   background: #8979da;
   box-shadow: var(--box-shadow);
 }
 
 .edit-btn::after {
-  font-family: "Font Awesome 5 Free"; 
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f044";
   font-size: 12px;
@@ -268,9 +282,8 @@ input[type='date'] {
   padding: 10px 0;
 }
 
-
 #btn-add-transaction::before {
-  font-family: "Font Awesome 5 Free"; 
+  font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f51e";
   font-size: 20px;
@@ -284,7 +297,7 @@ input[type='date'] {
   display: flex;
   position: fixed;
   align-items: center;
-  background: rgba(238, 242, 247, .8);
+  background: rgba(238, 242, 247, 0.8);
   justify-content: center;
 }
 
@@ -294,14 +307,11 @@ input[type='date'] {
   max-width: 350px;
   position: relative;
   border-radius: 5px;
-  background: #FFFFFF;
-  box-shadow:
-  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  0 12.5px 10px rgba(0, 0, 0, 0.06),
-  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12)
+  background: #ffffff;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
 .popup-close {
@@ -325,11 +335,10 @@ input[type='date'] {
 }
 
 .label {
-  display : block;
+  display: block;
   width: 100%;
   max-width: 350px;
   cursor: pointer;
-  
 }
 
 .label:first-child {
@@ -343,7 +352,6 @@ input[type='date'] {
 .label input {
   visibility: hidden; /*Makes input not-clickable*/
   position: absolute; /* Remove input from document flow */
-
 }
 
 .label div {
@@ -354,13 +362,13 @@ input[type='date'] {
   box-sizing: border-box;
 }
 
-.label > input:checked + div{ 
-  box-shadow: var(--box-shadow)
+.label > input:checked + div {
+  box-shadow: var(--box-shadow);
 }
 
-.label > input:checked + div > h4{ 
+.label > input:checked + div > h4 {
   transform: scale(1.15);
-  transition: .8s;
+  transition: 0.8s;
 }
 
 .type-transaction-container {
